@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +22,14 @@ public class TodoDTO {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.done = entity.isDone();
+    }
+
+    public static TodoEntity toEntity(final TodoDTO todoDTO){
+        return TodoEntity
+                .builder()
+                .id(todoDTO.getId())
+                .title(todoDTO.getTitle())
+                .done(todoDTO.isDone())
+                .build();
     }
 }
